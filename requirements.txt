@@ -1,0 +1,4 @@
+rasa==3.6.21
+python==3.9
+flask
+requests

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Quotes Bot</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:linear-gradient(135deg,#667eea,#764ba2);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.container{
+width:420px;
+background:white;
+border-radius:12px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+padding:20px;
+display:flex;
+flex-direction:column;
+}
+
+h2{
+text-align:center;
+margin-bottom:15px;
+}
+
+.chatbox{
+height:350px;
+overflow-y:auto;
+border:1px solid #eee;
+border-radius:8px;
+padding:10px;
+background:#fafafa;
+margin-bottom:10px;
+}
+
+.message{
+padding:8px 12px;
+margin:6px 0;
+border-radius:10px;
+max-width:75%;
+}
+
+.user{
+background:#4a90e2;
+color:white;
+margin-left:auto;
+}
+
+.bot{
+background:#e5e5ea;
+}
+
+.input-area{
+display:flex;
+gap:10px;
+}
+
+input{
+flex:1;
+padding:10px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+button{
+background:#4a90e2;
+color:white;
+border:none;
+padding:10px 16px;
+border-radius:6px;
+cursor:pointer;
+}
+
+button:hover{
+background:#357ABD;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Quotes Bot</h2>
+
+<div id="chat" class="chatbox"></div>
+
+<div class="input-area">
+<input id="message" placeholder="Type a message...">
+<button onclick="sendMessage()">Send</button>
+</div>
+
+</div>
+
+<script>
+
+async function sendMessage(){
+
+let input=document.getElementById("message")
+let message=input.value.trim()
+
+if(message==="") return
+
+let chat=document.getElementById("chat")
+
+chat.innerHTML+=`<div class="message user">${message}</div>`
+
+input.value=""
+
+let response=await fetch("/send",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({message:message})
+})
+
+let data=await response.json()
+
+chat.innerHTML+=`<div class="message bot">${data.reply}</div>`
+
+chat.scrollTop=chat.scrollHeight
+
+}
+
+</script>
+
+</body>
+</html>

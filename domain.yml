@@ -1,0 +1,77 @@
+# version: "3.1"
+
+# intents:
+#   - greet
+#   - goodbye
+#   - affirm
+#   - deny
+#   - mood_great
+#   - mood_unhappy
+#   - bot_challenge
+
+# responses:
+#   utter_greet:
+#   - text: "Hey! How are you?"
+
+#   utter_cheer_up:
+#   - text: "Here is something to cheer you up:"
+#     image: "https://i.imgur.com/nGF1K8f.jpg"
+
+#   utter_did_that_help:
+#   - text: "Did that help you?"
+
+#   utter_happy:
+#   - text: "Great, carry on!"
+
+#   utter_goodbye:
+#   - text: "Bye"
+
+#   utter_iamabot:
+#   - text: "I am a bot, powered by Rasa."
+
+# session_config:
+#   session_expiration_time: 60
+#   carry_over_slots_to_new_session: true
+
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - motivation
+  - inspiration
+  - love
+  - funny
+  - success
+
+responses:
+
+  utter_greet:
+  - text: "Hello! I can give motivational, inspirational, love, funny, or success quotes. What do you want?"
+
+  utter_goodbye:
+  - text: "Goodbye! Stay positive."
+
+  utter_motivation:
+  - text: "Push yourself, because no one else is going to do it for you."
+  - text: "Your only limit is your mind."
+
+  utter_inspiration:
+  - text: "Believe you can and you're halfway there."
+  - text: "Dream big and dare to fail."
+
+  utter_love:
+  - text: "Love is composed of a single soul inhabiting two bodies."
+  - text: "Where there is love, there is life."
+
+  utter_funny:
+  - text: "I am not lazy, I am just on energy-saving mode."
+  - text: "Life is short. Smile while you still have teeth."
+
+  utter_success:
+  - text: "Success usually comes to those who are too busy to be looking for it."
+  - text: "Don't watch the clock; do what it does. Keep going."
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

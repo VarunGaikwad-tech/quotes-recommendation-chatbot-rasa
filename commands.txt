@@ -1,0 +1,32 @@
+py -3.9 -m venv venv
+
+.\venv\Scripts\activate
+
+
+
+pip install rasa
+
+
+python -m pip install --upgrade pip
+
+pip install rasa
+
+deactivate
+rmdir /s /q venv
+
+
+
+
+
+Step 1 — Start Rasa Server
+Open Terminal 1 in your project folder.
+Run:
+rasa run --enable-api --cors "*"4
+
+
+Step 2 — Start Flask Web App
+Open Terminal 2.
+Go to your webapp folder: 
+cd webapp
+Run:
+python app.py
