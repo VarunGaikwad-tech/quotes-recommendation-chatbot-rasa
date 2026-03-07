@@ -33,6 +33,41 @@ The system understands user intent using **Natural Language Processing (NLP)** a
 
 ---
 
+## System Architecture
+
+The diagram below shows how all components of the chatbot connect and communicate at runtime.
+
+![System Architecture](system_architecture.svg)
+
+**Key components:**
+
+- **Web Interface** — Flask app (`app.py`) serves the chat UI and forwards user messages to Rasa via REST
+- **Rasa NLU Server** — Core engine that performs intent recognition, entity extraction, and NLP processing
+- **Actions Server** — Executes custom Python logic (`actions.py`) to fetch and return appropriate quotes
+- **Quotes Store** — Quote responses defined in `domain.yml`, served by the actions server
+- **Trained Model** — Generated from `nlu.yml` and `stories.yml` via `rasa train`, loaded at server startup
+
+---
+
+## Project Flow
+
+The diagram below shows the end-to-end flow of a single user interaction.
+
+![Project Flow](project_flow.svg)
+
+**Flow summary:**
+
+1. User opens the browser at `127.0.0.1:5000`
+2. Flask serves the chat interface (`index.html`)
+3. User types a message (e.g. *"give me a motivation quote"*)
+4. Flask POSTs the message to Rasa's REST webhook
+5. Rasa classifies the intent using the trained NLP model
+6. If the intent is **recognized** → the matched quote is returned
+7. If the intent is **not recognized** → a fallback message prompts the user to retry
+8. The response is displayed in the chat UI
+
+---
+
 ## Prerequisites
 
 Before getting started, make sure you have:
@@ -107,7 +142,7 @@ python -m pip install --upgrade pip
 Install Rasa:
 
 ```bash
-pip install rasa=3.6.21
+pip install rasa
 ```
 
 ---
@@ -151,13 +186,16 @@ http://127.0.0.1:5000
 
 ```
 User: hi
-Bot:  Hello! Please tell me which type of quote you want.
+Bot:  Hello! I can give motivational, inspirational, love, funny, or success quotes. What do you want?
 
-User: give me an inspirational quote
-Bot:  "Believe you can and you're halfway there." – Theodore Roosevelt
+User: give me motivation
+Bot:  Your only limit is your mind.
 
-User: yes
-Bot:  Thanks for your feedback! If you want more quotes, tell me the category.
+User: something about love
+Bot:  Love is composed of a single soul inhabiting two bodies.
+
+User: bye
+Bot:  Goodbye! Stay positive.
 ```
 
 ---
@@ -189,7 +227,7 @@ rasa shell
 
 ## Authors
 
-**Team Project — SmartBridge EL Program**
+**Team Project — SmartBridge Experiential Learning Program**
 
 - Vansh Malhotra
 - Varun Gaikwad
