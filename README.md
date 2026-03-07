@@ -142,7 +142,7 @@ python -m pip install --upgrade pip
 Install Rasa:
 
 ```bash
-pip install rasa
+pip install rasa=3.6.21
 ```
 
 ---
