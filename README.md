@@ -225,7 +225,7 @@ rasa shell
 
 ---
 
-## Authors
+## Created By:
 
 **Team Project — SmartBridge Experiential Learning Program**
 
